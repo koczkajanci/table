@@ -1,0 +1,24 @@
+table, td, tr{
+    border-style: solid;
+    border-color: brown;
+    border-width: 1px;
+    border-collapse: collapse;
+
+}
+
+tr :hover {
+    color: green;
+}
+
+table tr:first-child {
+    background-color: crimson;
+}
+
+table tr:not(:first-child){
+    background-color: darkslateblue;
+    
+}
+
+td{
+    text-align: center;
+}
