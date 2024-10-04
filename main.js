@@ -1,22 +1,30 @@
-const array = [
+let array = [
     {
-        firstname1: 'Doktor',
-        firstname2: 'Koczka',
-        lastname: 'János'
+        firstname1: 'Géza',
+        firstname2: 'Ferenc',
+        lastname: 'Kocsis',
+        married: true,
+        pet: 'kutya'
     },
     {
         firstname1: 'Mária',
         firstname2: 'Júlia',
-        lastname: 'Horváth'
+        lastname: 'Horváth',
+        married: false,
+        pet: 'macska'
     },
     {
         firstname1: 'Ferenc',
-        lastname: 'Balogh'
+        lastname: 'Balogh',
+        married: false,
+        pet: 'teknős'
     },
     {
         firstname1: 'Gábor',
         firstname2: 'Attila',
-        lastname: 'Horváth'
+        lastname: 'Horváth',
+        married: true,
+        pet: 'macska'
     },
 ]
 
@@ -27,7 +35,9 @@ const tablebody = document.createElement('tbody');
 const thr = document.createElement('tr');
 const tbr = document.createElement('tr');
 let thveznev = document.createElement('th');
-let thkernev = document.createElement('th')
+let thkernev = document.createElement('th');
+let thhazas = document.createElement('th');
+let thallat = document.createElement('th');
 let td = document.createElement('td');
 //---------------------------------------------------
 document.body.appendChild(table);
@@ -39,11 +49,18 @@ tablebody.appendChild(tbr);
  
 thr.appendChild(thveznev);
 thr.appendChild(thkernev);
+thr.appendChild(thhazas);
+thr.appendChild(thallat);
  
 tbr.appendChild(td);
 //---------------------------------------------------
 thveznev.innerHTML = 'Vezetéknév';
 thkernev.innerHTML = 'Keresztnév';
+thhazas.innerHTML = 'Házas-e?';
+thallat.innerHTML = 'Háziállat';
+
+thkernev.colSpan = 2
+
 
 const tbody= document.createElement('tbody')
 table.appendChild(tbody);
@@ -58,9 +75,31 @@ for (const person of array){
     const firstname1 = document.createElement('td');
     tr.appendChild(firstname1);
     firstname1.innerHTML = person.firstname1;
+
     if(person.firstname2 === undefined){
-        firstname1
+        firstname1.colSpan = 2
+    }else{
+        const firstname2 = document.createElement('td')
+        firstname2.innerHTML = person.firstname2
+        tr.appendChild(firstname2)
     }
+    const married = document.createElement('td');
+    tr.appendChild(married);
+    married.innerHTML = person.married;
+
+    if(person.married === true){
+        married.innerHTML = "igen"
+    }else{
+        married.innerHTML = "nem"
+    }
+    
+    const pet = document.createElement('td');
+    tr.appendChild(pet);
+    pet.innerHTML = person.pet;
+  
+
+
+  
 
     tr.addEventListener('click', function(e)
     { 
