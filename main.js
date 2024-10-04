@@ -118,5 +118,25 @@ for (const person of array){
  
     
 }
+const form = document.getElementById("form")
+form.addEventListener('submit', 
+    function(e)
+    {
+        e.preventDefault() 
+        const lastn = document.getElementById('lastname')   
+        const firstn1 = document.getElementById('firstname1')   
+        const firstn2 = document.getElementById('firstname2')   
+        const marry = document.getElementById('married')   
+        const alla = document.getElementById('pet')
+        
+        
+        const lastnValue =lastname.value
+        const firstn1Value = firstname1.value
+        const firstn2Value = firstname2.value
+        const all = pet.value
+        const marryValue = married.checked
+    })    
+
+
 
 
