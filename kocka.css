@@ -3,27 +3,28 @@ table, tr, td, th{
     border-color: brown;
     border-width: 1px;
     border-collapse: collapse;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
 
 }
 
-tr :hover {
-    color: green;
+tbody tr :hover {
+    background-color: blueviolet;
 }
 
 table thead tr {
     background-color: crimson;
 }
 
-table tr:not(:first-child){
+table tr:not(2n){
     background-color: darkslateblue;
     
 }
 
-tbody tr :nth-child(odd){
-    
+tbody tr :nth-child(2n+1){
+    background-color: blanchedalmond;
 }
 
-
-td{
-    text-align: center;
+.selected{
+    transform: scale(1.2);
 }

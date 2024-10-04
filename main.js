@@ -48,6 +48,7 @@ thkernev.innerHTML = 'Keresztnév';
 const tbody= document.createElement('tbody')
 table.appendChild(tbody);
 
+
 for (const person of array){
     const tr = document.createElement('tr');
     tbody.appendChild(tr);
@@ -60,5 +61,23 @@ for (const person of array){
     if(person.firstname2 === undefined){
         firstname1
     }
+
+    tr.addEventListener('click', function(e)
+    { 
+        let valasztott = tbody.querySelector('.selected');
+        if(valasztott != undefined){
+            valasztott.classList.remove('selected');
+        }   
+        console.log('click')
+        console.log(e);
+        e.currentTarget.classList.add('selected');
+       
+
+
+    }) 
+
+ 
+    
 }
+
 
