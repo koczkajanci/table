@@ -72,33 +72,34 @@ form.addEventListener('submit',
     function(e)
     {
         e.preventDefault() 
-        const lastn = document.getElementById('lastname')   
-        const firstn1 = document.getElementById('firstname1')   
-        const firstn2 = document.getElementById('firstname2')   
-        const marry = document.getElementById('married')   
-        const alla = document.getElementById('pet')
+        const lastname = document.getElementById('lastname')   
+        const firstname1 = document.getElementById('firstname1')   
+        const firstname2 = document.getElementById('firstname2')   
+        const married = document.getElementById('married')   
+        const pet = document.getElementById('pet')
         
         
-        const lastnValue =lastname.value
-        const firstn1Value = firstname1.value
-        const firstn2Value = firstname2.value
-        const all = pet.value
-        const marryValue = married.checked
+        let lastnValue =lastname.value
+        let firstn1Value = firstname1.value
+        let firstn2Value = firstname2.value
+        let all = pet.value
+        let marryValue = married.checked
 
         //Ha ures a firstname 1 akkor undefined legyen az erteke
+
         if(firstn2Value == ""){
             firstn2Value = undefined;
         }
         let new_person = {
             lastname: lastnValue,
-            firstname: firstn1Value,
+            firstname1: firstn1Value,
             firstname2: firstn2Value,
             pet: all,
             married: marryValue
         }
 
         //felpusholjuk a new_person objektumot a tombunkhoz de elotte kiuritjuk a tbodynak a tartalmat hogy ne legyen benne semmi
-        if(Validatefield(lastname, firstname, pet)){
+        if(Validatefield(lastname, firstname1, pet)){
             array.push(new_person);
             console.log(array);
             tablebody.innerHTML = "";
@@ -115,28 +116,43 @@ form.addEventListener('submit',
     //majd egy elobb letrehozott bool valtozot allitjuk annak megfeleloen hogy jo-e a cella vagy sem-
     function Validatefield(lastn, firstn1, alla){
         let result = true;
-        if(lastn.value === ""){
-            const parentElement = lastn.parentElement
+
+        const error = form.querySelectorAll('.error');
+        for(const errors of error)
+        {
+        errors.innerHTML = "";
+        }
+
+        if(lastname.value === ""){
+            const parentElement = lastname.parentElement
             const error = parentElement.querySelector('.error')
             error.innerHTML = "Kötelező vezetéknév";
             result = false;
         }
 
-        if(firstn1.value === ""){
-            const parentElement = firstn1.parentElement
+        if(firstname1.value === ""){
+            const parentElement = firstname1.parentElement
             const error = parentElement.querySelector('.error')
             error.innerHTML = "Kötelező keresztnev";
             result = false;
         }
 
-        if(alla.value === ""){
-            const parentElement = alla.parentElement
+        if(pet.value === ""){
+            const parentElement = pet.parentElement
             const error = parentElement.querySelector('.error')
             error.innerHTML = "Kötelező állat";
             result = false;
         }
         return result;
     }
+
+function createTableCell(tagName,innerHTML, parentElement){
+    const sigma = document.createElement(tagName);
+    sigma.innerHTML = innerHTML;
+    parentElement.appendChild(sigma);
+
+    
+}
     
     
 
