@@ -88,27 +88,29 @@ form.addEventListener('submit',
         const marryValue = married.checked
 
      
-
-
-        let adatok =  {
-            lastname: lastnValue,
-            firstname1: firstn1Value,
-            firstname2: firstn2Value,
-            married: marryValue,
-            pet: petValue
-        }
-        if(firstn2Value === ''){
-            firstn2Value = undefined
+        if(validateFields(lastname,firstname1,pet)){
+            let adatok =  {
+                lastname: lastnValue,
+                firstname1: firstn1Value,
+                firstname2: firstn2Value,
+                married: marryValue,
+                pet: petValue
+            }
+            if(firstn2Value === ""){
+                firstn2Value = undefined;
+                
+    
+            }
+    
             
-
+            
+            array.push(adatok);
+            renderTable();
+            
+    
         }
 
-        
-        
-        array.push(adatok);
-        renderTable();
-        
-
+       
     
 
 
@@ -169,6 +171,32 @@ function renderTable(){
      
         
     }
+}
+
+function validateFields(lastnameText,firstnameText,petText){
+    let result = true;
+    if(lastnameText.value === ''){
+        const parenttelement = lastnameText.parentElement
+        const error = parenttelement.querySelector('.error');
+        error.innerHTML = "Adj meg a keresztnevet";
+        result = false;
+    }
+
+    if(firstnameText.value === ''){
+        const parenttelement = firstnameText.parentElement
+        const error = parenttelement.querySelector('.error');
+        error.innerHTML = "Adj meg a vezeteknevet";
+        result = false;
+    }
+
+    if(petText.value === ''){
+        const parenttelement = petText.parentElement
+        const error = parenttelement.querySelector('.error');
+        error.innerHTML = "Adj meg az allat nevet";
+        result = false;
+    }
+    return result;
+
 }
 
 
