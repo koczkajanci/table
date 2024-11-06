@@ -89,23 +89,29 @@ form.addEventListener('submit',
 
      
         if(validateFields(lastname,firstname1,pet)){
+            if(firstn2Value == ""){
+                firstn2Value = undefined;
+                
+        
+            }
             let adatok =  {
                 lastname: lastnValue,
                 firstname1: firstn1Value,
                 firstname2: firstn2Value,
                 married: marryValue,
                 pet: petValue
-            }
-            if(firstn2Value === ""){
-                firstn2Value = undefined;
+
                 
-    
             }
-    
+          
+            
             
             
             array.push(adatok);
+            console.log(array)
             renderTable();
+
+           
             
     
         }
@@ -115,6 +121,8 @@ form.addEventListener('submit',
 
 
     })    
+
+
 
 
 function renderTable(){
