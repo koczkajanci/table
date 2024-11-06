@@ -65,77 +65,111 @@ thkernev.colSpan = 2
 const tbody= document.createElement('tbody')
 table.appendChild(tbody);
 
-
-for (const person of array){
-    const tr = document.createElement('tr');
-    tbody.appendChild(tr);
-    const lastname = document.createElement('td');
-    tr.appendChild(lastname);
-    lastname.innerHTML = person.lastname;
-    const firstname1 = document.createElement('td');
-    tr.appendChild(firstname1);
-    firstname1.innerHTML = person.firstname1;
-
-    if(person.firstname2 === undefined){
-        firstname1.colSpan = 2
-    }else{
-        const firstname2 = document.createElement('td')
-        firstname2.innerHTML = person.firstname2
-        tr.appendChild(firstname2)
-    }
-    const married = document.createElement('td');
-    tr.appendChild(married);
-    married.innerHTML = person.married;
-
-    if(person.married === true){
-        married.innerHTML = "igen"
-    }else{
-        married.innerHTML = "nem"
-    }
-    
-    const pet = document.createElement('td');
-    tr.appendChild(pet);
-    pet.innerHTML = person.pet;
-  
+renderTable();
 
 
-  
 
-    tr.addEventListener('click', function(e)
-    { 
-        let valasztott = tbody.querySelector('.selected');
-        if(valasztott != undefined){
-            valasztott.classList.remove('selected');
-        }   
-        console.log('click')
-        console.log(e);
-        e.currentTarget.classList.add('selected');
-       
-
-
-    }) 
-
- 
-    
-}
 const form = document.getElementById("form")
 form.addEventListener('submit', 
     function(e)
     {
         e.preventDefault() 
-        const lastn = document.getElementById('lastname')   
-        const firstn1 = document.getElementById('firstname1')   
-        const firstn2 = document.getElementById('firstname2')   
-        const marry = document.getElementById('married')   
-        const alla = document.getElementById('pet')
+        const lastname = document.getElementById('lastname')   
+        const firstname1 = document.getElementById('firstname1')   
+        const firstname2 = document.getElementById('firstname2')   
+        const married = document.getElementById('married')   
+        const pet = document.getElementById('pet')
         
         
         const lastnValue =lastname.value
         const firstn1Value = firstname1.value
-        const firstn2Value = firstname2.value
-        const all = pet.value
+        let firstn2Value = firstname2.value
+        const petValue = pet.value
         const marryValue = married.checked
+
+     
+
+
+        let adatok =  {
+            lastname: lastnValue,
+            firstname1: firstn1Value,
+            firstname2: firstn2Value,
+            married: marryValue,
+            pet: petValue
+        }
+        if(firstn2Value === ''){
+            firstn2Value = undefined
+            
+
+        }
+
+        
+        
+        array.push(adatok);
+        renderTable();
+        
+
+    
+
+
     })    
+
+
+function renderTable(){
+    tbody.innerHTML = '';
+    for (const person of array){
+        const tr = document.createElement('tr');
+        tbody.appendChild(tr);
+        const lastname = document.createElement('td');
+        tr.appendChild(lastname);
+        lastname.innerHTML = person.lastname;
+        const firstname1 = document.createElement('td');
+        tr.appendChild(firstname1);
+        firstname1.innerHTML = person.firstname1;
+    
+        if(person.firstname2 === undefined){
+            firstname1.colSpan = 2
+        }else{
+            const firstname2 = document.createElement('td')
+            firstname2.innerHTML = person.firstname2
+            tr.appendChild(firstname2)
+        }
+        const married = document.createElement('td');
+        tr.appendChild(married);
+        married.innerHTML = person.married;
+    
+        if(person.married === true){
+            married.innerHTML = "igen"
+        }else{
+            married.innerHTML = "nem"
+        }
+        
+        const pet = document.createElement('td');
+        tr.appendChild(pet);
+        pet.innerHTML = person.pet;
+      
+    
+    
+      
+    
+        tr.addEventListener('click', function(e)
+        { 
+            let valasztott = tbody.querySelector('.selected');
+            if(valasztott != undefined){
+                valasztott.classList.remove('selected');
+            }   
+            console.log('click')
+            console.log(e);
+            e.currentTarget.classList.add('selected');
+           
+    
+    
+        }) 
+    
+     
+        
+    }
+}
 
 
 
