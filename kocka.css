@@ -12,7 +12,7 @@ tbody tr :hover {
     background-color: blueviolet;
 }
 
-table thead tr {
+table thead th {
     background-color: crimson;
 }
 

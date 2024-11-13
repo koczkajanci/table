@@ -34,10 +34,10 @@ const tablehead = document.createElement('thead');
 const tablebody = document.createElement('tbody');
 const thr = document.createElement('tr');
 const tbr = document.createElement('tr');
-let thveznev = document.createElement('th');
-let thkernev = document.createElement('th');
-let thhazas = document.createElement('th');
-let thallat = document.createElement('th');
+let thveznev = createTableElement('th', "Vezetéknév", tablehead)
+let thkernev = createTableElement('th', "Keresztnév", tablehead)
+let thhazas = createTableElement('th', "Házas-e?", tablehead)
+let thallat = createTableElement('th', "Állat", tablehead)
 let td = document.createElement('td');
 //---------------------------------------------------
 document.body.appendChild(table);
@@ -47,17 +47,11 @@ table.appendChild(tablebody);
 tablehead.appendChild(thr);
 tablebody.appendChild(tbr);
  
-thr.appendChild(thveznev);
-thr.appendChild(thkernev);
-thr.appendChild(thhazas);
-thr.appendChild(thallat);
+
  
 tbr.appendChild(td);
 //---------------------------------------------------
-thveznev.innerHTML = 'Vezetéknév';
-thkernev.innerHTML = 'Keresztnév';
-thhazas.innerHTML = 'Házas-e?';
-thallat.innerHTML = 'Háziállat';
+
 
 thkernev.colSpan = 2
 
@@ -182,6 +176,10 @@ function renderTable(){
 }
 
 function validateFields(lastnameText,firstnameText,petText){
+
+    const errortorles = form.querySelectorAll('.error');
+    errortorles.forEach(error => error.innerHTML = ' ');
+
     let result = true;
     if(lastnameText.value === ''){
         const parenttelement = lastnameText.parentElement
@@ -207,6 +205,17 @@ function validateFields(lastnameText,firstnameText,petText){
 
 }
 
-
-
+/**
+ * 
+ * @param {'td'|'th'} egy 
+ * @param {string} ketto 
+ * @param {HTMLTableRowElement} harom 
+ * @returns {HTMLTableCellElement}
+ */
+function createTableElement(egy,ketto,harom){
+    const segitseg = document.createElement(egy);
+    segitseg.innerHTML = ketto;
+    harom.appendChild(segitseg);
+    return segitseg;
+}
 
