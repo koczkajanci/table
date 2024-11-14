@@ -29,31 +29,32 @@ let array = [
 ]
 
 
-const table = document.createElement('table');
-const tablehead = document.createElement('thead');
-const tablebody = document.createElement('tbody');
-const thr = document.createElement('tr');
-const tbr = document.createElement('tr');
-let thveznev = createTableElement('th', "Vezetéknév", tablehead)
-let thkernev = createTableElement('th', "Keresztnév", tablehead)
-let thhazas = createTableElement('th', "Házas-e?", tablehead)
-let thallat = createTableElement('th', "Állat", tablehead)
-let td = document.createElement('td');
+//const table = document.createElement('table');
+//const tablehead = document.createElement('thead');
+//const tablebody = document.createElement('tbody');
+//const thr = document.createElement('tr');
+
+createHTMLElement("table","persontable",document.body)
+createHTMLElementWithParentId("thead","personthead", "persontable")
+createHTMLElementWithParentId("tr","persontr","personthead")
+createHTMLElementWithParentId("tbody","persontbody","persontable")
+
+
+
 //---------------------------------------------------
 document.body.appendChild(table);
 table.appendChild(tablehead);
 table.appendChild(tablebody);
  
 tablehead.appendChild(thr);
-tablebody.appendChild(tbr);
- 
 
  
-tbr.appendChild(td);
+
+
 //---------------------------------------------------
 
 
-thkernev.colSpan = 2
+
 
 
 const tbody= document.createElement('tbody')
@@ -104,6 +105,8 @@ form.addEventListener('submit',
             array.push(adatok);
             console.log(array)
             renderTable();
+
+            form.reset();
 
            
             
